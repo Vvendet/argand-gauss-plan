@@ -32,19 +32,37 @@ while True:
     cos = posicio/mod
     sen = posicio2/mod
     try:
-        ang = numpy.arcsin (sen)
+        ang = math (sen)
         ang = numpy.rad2deg(ang)
     except:
         ang = math.acos(cos)
         ang = numpy.rad2deg(ang)
-    if ang < 0:
-        ang = ang*-1
+    
     if posicio < 0 and posicio2 > 0:
-        ang = 180 - ang
+        cos = posicio2/mod
+        sen = posicio/mod
+        try:
+            ang = math (sen)
+            ang = numpy.rad2deg(ang)
+            ang = ang + 90
+            
+        except:
+            ang = math.acos(cos)
+            ang = numpy.rad2deg(ang)
+            ang += 90
+            
+    elif posicio < 0 and posicio2 == 0:
+        ang = 180
     elif posicio < 0 and posicio2 < 0:
-        ang = 180 + ang
+        ang = ang - 180
+        ang = ang *-1
+        ang = ang + 180
     elif posicio > 0 and posicio2 < 0:
         ang = 360 - ang
+    elif posicio == 0 and posicio2 < 0:
+        ang = 270
+
+    
         
     mensagem = f'{posicio}'
     mensagem_1 = f'{posicio2}i'
